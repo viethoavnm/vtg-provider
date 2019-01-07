@@ -12,6 +12,16 @@ export const NotAuthorized = loadable({
   loading: Loading
 })
 
+export const Login = loadable({
+  loader: () => import('./auth/Login'),
+  loading: Loading
+})
+
+export const Register = loadable({
+  loader: () => import('./auth/Register'),
+  loading: Loading
+})
+
 export const InputHotel = loadable({
   loader: () => import('./hotel/InputHotel'),
   loading: Loading

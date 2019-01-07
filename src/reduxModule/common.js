@@ -3,8 +3,10 @@
  *  - Switch locale
  */
 import api from '../utils/api';
-import { DEFAULT_LANG } from 'consts';
+import jsCookie from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 import create from 'utils/createReducer';
+import { DEFAULT_LANG, TOKEN_KEY, LOGOUT_KEY } from 'consts';
 
 const SWITCH_LOCALE = 'SWITCH_LOCALE';
 const SET_INFO = 'SET_INFO';
@@ -39,12 +41,27 @@ export function fetchCompanyProfile() {
             type: SET_INFO,
             payload: info
           })
-        } catch (error) {
-
-        }
-
+        } catch (error) { }
       })
+  }
+}
 
+export function requestLogin(token) {
+  jsCookie.set(TOKEN_KEY, token);
+  const user = jwtDecode(token);
+  return dispatch => {
+    dispatch({
+      type: LOGGED_IN,
+      payload: user
+    })
+  }
+}
+
+export function requestLogout() {
+  jsCookie.remove(TOKEN_KEY);
+  localStorage.setItem(LOGOUT_KEY, Date.now());
+  return {
+    type: LOGGED_OUT
   }
 }
 
