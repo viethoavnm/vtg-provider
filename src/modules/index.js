@@ -11,3 +11,8 @@ export const NotAuthorized = loadable({
   loader: () => import('./error-page/NotAuthorized'),
   loading: Loading
 })
+
+export const InputHotel = loadable({
+  loader: () => import('./hotel/InputHotel'),
+  loading: Loading
+})

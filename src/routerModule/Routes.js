@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 const Routes = () => (
   <Switch>
     <Route exact path="/login" />
-    <PrivateRoute exact path="/" />
+    <PrivateRoute exact path="/" component={Modules.InputHotel} />
     <Route exact path="/notAuthorized" component={Modules.NotAuthorized} />
     <Route component={Modules.NotFound} />
   </Switch>)

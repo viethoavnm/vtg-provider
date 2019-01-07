@@ -9,7 +9,8 @@ const SWITCH_LOCALE = 'SWITCH_LOCALE';
 const initState = {
   locale: DEFAULT_LANG,
   user: {},
-  loggedIn: false
+  info: {},
+  loggedIn: true
 }
 
 const handlers = {
