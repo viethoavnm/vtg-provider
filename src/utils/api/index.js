@@ -12,7 +12,7 @@ const services = Axios.create({
   withCredentials: false,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': "Bearer " + jsCookie.get(TOKEN_KEY)
+    'Authorization': jsCookie.get(TOKEN_KEY) ? ("Bearer " + jsCookie.get(TOKEN_KEY)) : undefined
   }
 })
 addInterceptors(services)
