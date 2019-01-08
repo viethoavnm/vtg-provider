@@ -7,7 +7,7 @@ import jsCookie from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import create from 'utils/createReducer';
 import { redirectToAttemptedUrl } from 'utils/url';
-import { DEFAULT_LANG, TOKEN_KEY, LOGOUT_KEY, TOKEN_EXPIRED_TIME } from 'consts';
+import { DEFAULT_LANG, TOKEN_KEY, LOGOUT_KEY, LOGIN_KEY, TOKEN_EXPIRED_TIME } from 'consts';
 
 const SET_INFO = 'SET_INFO';
 const LOGGED_IN = 'LOGGED_IN';
@@ -17,13 +17,15 @@ const SWITCH_LOCALE = 'SWITCH_LOCALE';
 /**
  * Check login information when loading app.
  */
-const loggedIn = (function getLogginInfo() {
+function getLogginInfo() {
   const token = jsCookie.get(TOKEN_KEY);
   if (!token)
     return undefined;
   const user = jwtDecode(token);
   return user;
-})();
+}
+
+const loggedIn = getLogginInfo();
 
 const initState = {
   locale: DEFAULT_LANG,
@@ -38,8 +40,6 @@ const handlers = {
   [LOGGED_IN]: (state, action) => ({ ...state, loggedIn: true, user: action.payload }),
   [LOGGED_OUT]: (state) => ({ ...state, loggedIn: false, user: {} }),
 }
-
-
 
 export function switchLocale(locale) {
   return ({ type: SWITCH_LOCALE, payload: locale })
@@ -62,6 +62,7 @@ export function fetchCompanyProfile() {
 
 export function requestLogin(token) {
   jsCookie.set(TOKEN_KEY, token, { expires: TOKEN_EXPIRED_TIME });
+  localStorage.setItem(LOGIN_KEY, Date.now());
   const user = jwtDecode(token);
   return dispatch => {
     dispatch({
@@ -70,6 +71,18 @@ export function requestLogin(token) {
     })
     redirectToAttemptedUrl();
   }
+}
+
+export function verifyLogin() {
+  const user = getLogginInfo();
+  if (user)
+    return dispatch => {
+      dispatch({
+        type: LOGGED_IN,
+        payload: user
+      })
+      redirectToAttemptedUrl();
+    }
 }
 
 export function requestLogout() {

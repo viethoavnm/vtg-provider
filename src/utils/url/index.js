@@ -1,5 +1,4 @@
-import jsCookie from 'js-cookie';
-import { ATTEMPT_URL } from 'consts';
+let attemptUrl = '/';
 
 export function saveAttemptUrl(url) {
   switch (url) {
@@ -8,15 +7,13 @@ export function saveAttemptUrl(url) {
     case '/forgot':
     case '/notAuthorized':
     case '/notFound':
-      jsCookie.set(ATTEMPT_URL, '/');
       break;
     default:
-      jsCookie.set(ATTEMPT_URL, url);
+    attemptUrl = url;
       break;
   }
 }
 
 export function redirectToAttemptedUrl() {
-  const url = jsCookie.get(ATTEMPT_URL) || '/';
-  window.location = `#${url}`;
+  window.location = `#${attemptUrl}`;
 }

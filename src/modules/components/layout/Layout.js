@@ -1,22 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import { LOGOUT_KEY } from 'consts';
+import { LOGOUT_KEY, LOGIN_KEY } from 'consts';
+import { requestLogout, verifyLogin } from 'reduxModule/common';
 import './Layout.less';
 
 class AppLayout extends React.PureComponent {
-  onLogout = (e) => {
-    if (e.key === LOGOUT_KEY) {
-      console.log("#", LOGOUT_KEY);
+  onLogging = (e) => {
+    const { requestLogout, verifyLogin } = this.props;
+    switch (e.key) {
+      case LOGOUT_KEY:
+        requestLogout();
+        break;
+      case LOGIN_KEY:
+        verifyLogin();
+        break;
+      default:
+        break;
     }
   }
 
   componentDidMount() {
-    window.addEventListener('storage', this.onLogout, false);
+    window.addEventListener('storage', this.onLogging, false);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('storage', this.onLogout, false)
+    window.removeEventListener('storage', this.onLogging, false)
   }
 
   render() {
@@ -29,4 +39,4 @@ class AppLayout extends React.PureComponent {
   }
 };
 
-export default AppLayout;
+export default connect(null, { requestLogout, verifyLogin })(AppLayout);
