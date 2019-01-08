@@ -4,6 +4,7 @@ import { BASE_URL } from 'consts';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { requestLogin } from 'reduxModule/common';
+import { redirectToAttemptedUrl } from 'utils/url';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import './auth.less';
@@ -12,6 +13,12 @@ const FormItem = Form.Item
 
 class NormalLoginForm extends React.Component {
   state = { loading: false }
+
+  componentDidMount() {
+    if (this.props.loggedIn) {
+      redirectToAttemptedUrl();
+    }
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -98,4 +105,4 @@ class NormalLoginForm extends React.Component {
 
 const WrappedNormalLoginForm = Form.create()(NormalLoginForm)
 
-export default injectIntl(connect((state) => ({ state }), { requestLogin })(WrappedNormalLoginForm))
+export default injectIntl(connect((state) => ({ loggedIn: state.common.loggedIn }), { requestLogin })(WrappedNormalLoginForm))
