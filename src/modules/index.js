@@ -1,6 +1,6 @@
 import loadable from 'react-loadable';
 import Loading from 'components/Loading';
-import 'components/Style/style.less';
+import './app.less';
 
 export const NotFound = loadable({
   loader: () => import('./error-page/NotFound'),

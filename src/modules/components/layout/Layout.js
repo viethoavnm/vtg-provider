@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import { startSession } from 'utils/auth';
 import { LOGOUT_KEY, LOGIN_KEY } from 'consts';
 import { requestLogout, verifyLogin } from 'reduxModule/common';
 import './Layout.less';
@@ -22,6 +23,9 @@ class AppLayout extends React.PureComponent {
   }
 
   componentDidMount() {
+    if (this.props.loggedIn) {
+      startSession();
+    } 
     window.addEventListener('storage', this.onLogging, false);
   }
 
@@ -39,4 +43,4 @@ class AppLayout extends React.PureComponent {
   }
 };
 
-export default connect(null, { requestLogout, verifyLogin })(AppLayout);
+export default connect(({ common }) => ({ loggedIn: common.loggedIn }), { requestLogout, verifyLogin })(AppLayout);

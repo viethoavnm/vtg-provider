@@ -7,6 +7,7 @@ import jsCookie from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import create from 'utils/createReducer';
 import { redirectToAttemptedUrl } from 'utils/url';
+import { startSession, endSesstion } from 'utils/auth';
 import { DEFAULT_LANG, TOKEN_KEY, LOGOUT_KEY, LOGIN_KEY, TOKEN_EXPIRED_TIME } from 'consts';
 
 const SET_INFO = 'SET_INFO';
@@ -69,6 +70,7 @@ export function requestLogin(token) {
       type: LOGGED_IN,
       payload: user
     })
+    startSession();
     redirectToAttemptedUrl();
   }
 }
@@ -81,6 +83,7 @@ export function verifyLogin() {
         type: LOGGED_IN,
         payload: user
       })
+      startSession();
       redirectToAttemptedUrl();
     }
 }
@@ -88,6 +91,7 @@ export function verifyLogin() {
 export function requestLogout() {
   jsCookie.remove(TOKEN_KEY);
   localStorage.setItem(LOGOUT_KEY, Date.now());
+  endSesstion();
   return {
     type: LOGGED_OUT
   }

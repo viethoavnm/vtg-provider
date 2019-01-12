@@ -7,3 +7,4 @@ export const LOGIN_KEY = 'loggedin';
 export const LOGOUT_KEY = 'loggedout';
 export const TOKEN_EXPIRED_TIME = 1 / 48;
 export const TOKEN_COOKIE_PATH = 'provider';
+export const AUTO_LOGOUT_TIME = 3600;
