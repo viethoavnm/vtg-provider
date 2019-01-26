@@ -2,7 +2,7 @@
  * Common reducer 
  *  - Switch locale
  */
-import api from '../utils/api';
+import api from 'utils/api';
 import jsCookie from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import create from 'utils/createReducer';

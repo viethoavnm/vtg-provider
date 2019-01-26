@@ -22,7 +22,12 @@ export const Register = loadable({
   loading: Loading
 })
 
-export const InputHotel = loadable({
-  loader: () => import('./hotel/InputHotel'),
+export const HotelDetail = loadable({
+  loader: () => import('./hotel/HotelDetail'),
+  loading: Loading
+})
+
+export const HotelManagement = loadable({
+  loader: () => import('./hotel/Management'),
   loading: Loading
 })

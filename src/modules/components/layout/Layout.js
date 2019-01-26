@@ -37,7 +37,7 @@ class AppLayout extends React.PureComponent {
     return (
       <React.Fragment>
         <Header />
-        {this.props.content}
+        {this.props.children}
         <Footer />
       </React.Fragment>)
   }
