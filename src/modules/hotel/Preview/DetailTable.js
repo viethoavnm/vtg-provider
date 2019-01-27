@@ -7,7 +7,6 @@ export default class DetailTable extends React.PureComponent {
     window.location = "#/payment"
   }
   render() {
-    const { data } = this.props;
     return (
       <div className="table-wrapper">
         <div className="row t-head no-gutters">
@@ -20,6 +19,9 @@ export default class DetailTable extends React.PureComponent {
               <div className="col-3"><FormattedMessage id="ROOM_PRICE" /></div>
             </div>
           </div>
+        </div>
+        <div className="col-10">
+          {dummy.slice(0, 5).map((item) => (<RowItem key={item.id} item={item} />))}
         </div>
       </div>
     )

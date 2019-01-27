@@ -33,7 +33,7 @@ const AvatarHolder = ({ user }) => {
       title={<FormattedMessage id="USER_INFO" />}>
       <div className="avatar">
         <span className="avatar__name">{user}</span>
-        <Avatar className="avatar__image">{user}</Avatar>
+        <Avatar className="avatar__image" style={{ marginLeft: 8 }}>{user}</Avatar>
       </div>
     </Popover>
   )
