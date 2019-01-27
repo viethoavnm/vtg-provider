@@ -39,17 +39,19 @@ export default class Management extends React.Component {
   render() {
     const { content, fetching, number, size, totalElements } = this.state;
     return (
-      <div className="container">
-        <div className="tbl__title">
-          <FormattedMessage id="STAY_LIST" />
-        </div>
+      <div className="container content">
+        <Link to="/hotel">
+          <Button type="primary">
+            <FormattedMessage id="ADD_STAY" />
+          </Button>
+        </Link>
         <div className="tbl__toolbar">
-          <Link to="/hotel">
-            <Button>
-              <FormattedMessage id="ADD_STAY" />
-            </Button>
-          </Link>
-          <Input.Search onSearch={this.onSearch} />
+          <h3 className="tbl__title">
+            <FormattedMessage id="STAY_LIST" />
+          </h3>
+          <div className="tbl__right">
+            <Input.Search onSearch={this.onSearch} />
+          </div>
         </div>
         <Table
           rowKey="id"
@@ -73,7 +75,8 @@ const getColumns = () => {
   return [
     {
       title: <FormattedMessage id="STAY_CODE" />,
-      dataIndex: 'id'
+      dataIndex: 'id',
+      width: 100
     },
     {
       title: <FormattedMessage id="STAY_NAME" />,
@@ -93,6 +96,7 @@ const getColumns = () => {
     },
     {
       title: <FormattedMessage id="STAY_DETAIL" />,
+      width: 120,
       render: ({ id }) => (
         <Link to={`/hotel/${id}`}>
           <FormattedMessage id="VIEW_DETAIL" />

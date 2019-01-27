@@ -98,5 +98,8 @@
   "ROOM_PRICE": "Giá phòng",
   "YOUR_ORDER": "Đơn hàng của bạn",
   "TOP_AMENITIES": "Tiện nghi nổi bật",
-  "HOTEL_AMENITIES": "Tiện nghi, dịch vụ khách sạn"
+  "HOTEL_AMENITIES": "Tiện nghi, dịch vụ khách sạn",
+  "USER_INFO": "Thông tin người dùng",
+  "SETTING": "Cài đặt",
+  "SIGN_OUT": "Đăng xuất"
 }

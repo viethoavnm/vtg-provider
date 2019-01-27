@@ -1,35 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Avatar, Popover, Icon } from 'antd';
+import { Avatar, Popover, Icon, Menu } from 'antd';
 import { FormattedMessage } from 'react-intl';
 
 const AvatarHolder = ({ user }) => {
-  const POP_CONTENT = (
-    <ul className="user-popover">
-      <li>
-        <a href="#/user-info">
-          <Icon type="user" />
-          <FormattedMessage id="USER_INFO" />
-        </a>
-      </li>
-      <li>
-        <a href="#/setting">
-          <Icon type="setting" />
-          <FormattedMessage id="SETTING" />
-        </a>
-      </li>
-      <li>
-        <a href="#/sign-out">
-          <Icon type="logout" />
-          <FormattedMessage id="SIGN_OUT" />
-        </a>
-      </li>
-    </ul>
-  )
   return (
     <Popover
       placement="bottomRight"
-      content={POP_CONTENT}
+      content={
+        <Menu>
+          <Menu.Item>
+            <a href="#/user-info">
+              <Icon type="user" />
+              <FormattedMessage id="USER_INFO" />
+            </a>
+          </Menu.Item>
+          <Menu.Item>
+            <a href="#/setting">
+              <Icon type="setting" />
+              <FormattedMessage id="SETTING" />
+            </a>
+          </Menu.Item>
+          <Menu.Item>
+            <a href="#/sign-out">
+              <Icon type="logout" />
+              <FormattedMessage id="SIGN_OUT" />
+            </a>
+          </Menu.Item>
+        </Menu>}
       title={<FormattedMessage id="USER_INFO" />}>
       <div className="avatar">
         <span className="avatar__name">{user}</span>
