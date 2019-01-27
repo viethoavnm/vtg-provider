@@ -90,5 +90,13 @@
   "EDIT": "Chỉnh sửa",
   "MANAGE_ROOM": "Quản lý phòng",
   "HOTEL_UTILS": "Tiện nghi khách sạn",
-  "VIEW_DETAIL": "Xem chi tiết"
+  "VIEW_DETAIL": "Xem chi tiết",
+  "ROOM_TYPE": "Loại phòng",
+  "ROOM_POLICY": "Chính sách phòng",
+  "HUMAN_NUM": "Số người",
+  "ROOM_NUM": "Số phòng",
+  "ROOM_PRICE": "Giá phòng",
+  "YOUR_ORDER": "Đơn hàng của bạn",
+  "TOP_AMENITIES": "Tiện nghi nổi bật",
+  "HOTEL_AMENITIES": "Tiện nghi, dịch vụ khách sạn"
 }
