@@ -1,7 +1,8 @@
 import React from 'react';
-import { Form, Input, Select, Button } from 'antd';
+import api from 'utils/api';
 import { FormattedMessage } from 'intl';
 import { withRouter } from 'react-router-dom';
+import { Form, Input, Select, Button } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -13,8 +14,23 @@ const prefixSelector =
   </Select>)
 
 class HotelDetail extends React.Component {
+  fetch = () => {
+    api.getHotelDetail(this.props.match.params.id)
+      .then((data) => {
+        this.props.form.setFieldsValue(data);
+      })
+      .catch()
+  }
+
+  componentDidMount() {
+    if (!!this.props.match.params.id) {
+      this.fetch();
+    }
+  }
+
   render() {
     const addMode = !this.props.match.params.id;
+    const { getFieldDecorator } = this.props.form;
     return (
       <div className="container content">
         <Form>
@@ -30,14 +46,14 @@ class HotelDetail extends React.Component {
             <div className="row">
               <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_VIETNAMESE" />}>
-                  <Input />
+                  {getFieldDecorator('name')(<Input />)}
                 </FormItem>
               </div>
               <div className="col-6">
                 <FormItem
                   label={<FormattedMessage id="INPUT_ENGLISH" />}
                   help={<FormattedMessage id="INPUT_ENGLISH_GUILD" />}>
-                  <Input />
+                  {getFieldDecorator('nameEn')(<Input />)}
                 </FormItem>
               </div>
             </div>
@@ -46,16 +62,16 @@ class HotelDetail extends React.Component {
                 <FormItem
                   label={<FormattedMessage id="INPUT_HOTEL_TYPE" />}
                   help={<FormattedMessage id="INPUT_LOCATION" />}>
-                  <Select></Select>
+                  {getFieldDecorator('hotelType')(<Select></Select>)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="INPUT_COUNTRY" />}>
-                  <Select></Select>
+                  {getFieldDecorator('countryId')(<Select></Select>)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="INPUT_CITY" />}>
-                  <Select></Select>
+                  {getFieldDecorator('provinceId')(<Select></Select>)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="INPUT_AREA_CODE" />}>
-                  <Select></Select>
+                  {getFieldDecorator('geoCode')(<Input />)}
                 </FormItem>
               </div>
               <div className="col-6">
@@ -65,15 +81,15 @@ class HotelDetail extends React.Component {
             <div className="row">
               <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_DISTRIC" />}>
-                  <Input />
+                  {getFieldDecorator('distric')(<Input />)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="INPUT_HOME_NO" />}>
-                  <Input.TextArea />
+                  {getFieldDecorator('address')(<Input.TextArea />)}
                 </FormItem>
               </div>
               <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_STREET" />}>
-                  <Input />
+                  {getFieldDecorator('street')(<Input.TextArea />)}
                 </FormItem>
               </div>
             </div>
@@ -108,5 +124,5 @@ class HotelDetail extends React.Component {
   }
 }
 
-
-export default withRouter(HotelDetail);
+const FormWrapper = Form.create()(HotelDetail);
+export default withRouter(FormWrapper);

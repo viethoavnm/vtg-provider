@@ -1,4 +1,5 @@
 import React from 'react';
+import api from 'utils/api';
 import { Icon, Rate } from 'antd';
 import Preview from './Preview/Preview';
 import About from './Preview/AboutHotel';
@@ -8,10 +9,26 @@ import Policy from './Preview/HotelPolicy';
 import Similar from './Preview/SimilarHotel';
 import Services from './Preview/HotelServices';
 import Amenities from './Preview/HotelAmenities';
+import { withRouter } from 'react-router-dom';
 
-export default class HotelPreview extends React.Component {
+export default withRouter(class HotelPreview extends React.Component {
+  state = { hotel: {} };
+
+  fetch = () => {
+    api.getHotelDetail(this.props.match.params.id)
+      .then((hotel) => {
+        this.setState({ hotel });
+      })
+      .catch()
+  }
+
+  componentDidMount() {
+    if (!!this.props.match.params.id) {
+      this.fetch();
+    }
+  }
   render() {
-    const hotel = {};
+    const { hotel } = this.state;
     return (<div className="detail container">
       <div className="row box">
         <div className="col-12">
@@ -32,4 +49,4 @@ export default class HotelPreview extends React.Component {
       <Similar />
     </div>)
   }
-}
+})

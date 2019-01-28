@@ -21,7 +21,7 @@ export default class DetailTable extends React.PureComponent {
           </div>
         </div>
         <div className="col-10">
-          {dummy.slice(0, 5).map((item) => (<RowItem key={item.id} item={item} />))}
+          {[dummy].slice(0, 5).map((item) => (<RowItem key={item.id} item={item} />))}
         </div>
       </div>
     )
@@ -61,12 +61,12 @@ const RowItem = ({ item }) =>
         <Icon type="minus" />{dummy.description}
       </div>
       <div className="room-policy">
-        <ul>
+        {/* <ul>
           {item.benefits.map((value) =>
             (<li key={value}>
               <FormattedMessage id={value} />
             </li>))}
-        </ul>
+        </ul> */}
       </div>
     </div>
     <div className="col-1 human-num">

@@ -6,6 +6,9 @@ const api = (axios) => ({
   },
   getMyHotel: (params) => {
     return axios.get('api/hotel/get-all', { params });
+  },
+  getHotelDetail: (id)=>{
+    return axios.get(`api/hotel/get-by-id/${id}`);
   }
 })
 
