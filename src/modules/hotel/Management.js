@@ -39,35 +39,45 @@ export default class Management extends React.Component {
   render() {
     const { content, fetching, number, size, totalElements } = this.state;
     return (
-      <div className="container content">
-        <Link to="/hotel">
-          <Button type="primary">
-            <FormattedMessage id="ADD_STAY" />
-          </Button>
-        </Link>
-        <div className="tbl__toolbar">
-          <h3 className="tbl__title">
-            <FormattedMessage id="STAY_LIST" />
-          </h3>
-          <div className="tbl__right">
-            <Input.Search onSearch={this.onSearch} />
+      <React.Fragment>
+        <div className="wrapper__title title">
+          <div className="title__left">
+            <h3 className="title__main"><FormattedMessage id="HOTE_MANAGEMENT" /></h3>
+            <p className="title__small"><FormattedMessage id="HOTE_MANAGEMENT_DES" /></p>
+          </div>
+          <div className="title__right">
+            <Link to="/hotel">
+              <Button type="primary" icon="plus">
+                <FormattedMessage id="ADD_STAY" />
+              </Button>
+            </Link>
           </div>
         </div>
-        <Table
-          rowKey="id"
-          loading={fetching}
-          columns={this.columns}
-          dataSource={content}
-          pagination={{
-            showSizeChanger: true,
-            current: number + 1,
-            pageSize: size,
-            total: totalElements,
-            onChange: this.showSizeChanger,
-            onShowSizeChange: this.showSizeChanger
-          }}
-        />
-      </div>)
+        <div className="box">
+          <div className="tbl__toolbar">
+            <h3 className="tbl__title">
+              <FormattedMessage id="STAY_LIST" />
+            </h3>
+            <div className="tbl__right">
+              <Input.Search onSearch={this.onSearch} />
+            </div>
+          </div>
+          <Table
+            rowKey="id"
+            loading={fetching}
+            columns={this.columns}
+            dataSource={content}
+            pagination={{
+              showSizeChanger: true,
+              current: number + 1,
+              pageSize: size,
+              total: totalElements,
+              onChange: this.showSizeChanger,
+              onShowSizeChange: this.showSizeChanger
+            }}
+          />
+        </div>
+      </React.Fragment>)
   }
 }
 

@@ -29,8 +29,8 @@ export default withRouter(class HotelPreview extends React.Component {
   }
   render() {
     const { hotel } = this.state;
-    return (<div className="detail container">
-      <div className="row box">
+    return (<div className="hpreview">
+      <div className="row hotel__box">
         <div className="col-12">
           <span className="title">
             {hotel.name}

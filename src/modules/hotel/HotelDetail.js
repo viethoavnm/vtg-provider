@@ -2,7 +2,7 @@ import React from 'react';
 import api from 'utils/api';
 import { FormattedMessage } from 'intl';
 import { withRouter } from 'react-router-dom';
-import { Form, Input, Select, Button } from 'antd';
+import { Form, Input, Select, Button, Divider } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -22,6 +22,11 @@ class HotelDetail extends React.Component {
       .catch()
   }
 
+  onSave = () => {
+    const id = this.props.match.params.id || 1;
+    this.props.history.push(`/preview/${id}`)
+  }
+
   componentDidMount() {
     if (!!this.props.match.params.id) {
       this.fetch();
@@ -32,17 +37,21 @@ class HotelDetail extends React.Component {
     const addMode = !this.props.match.params.id;
     const { getFieldDecorator } = this.props.form;
     return (
-      <div className="container content">
-        <Form>
-          <div className="">
-            <h2><FormattedMessage id="HELLO_NAME" values={{ name: addMode }} /></h2>
-            <FormattedMessage id="INPUT_HOTEL_TEXT_DES" />
+      <React.Fragment>
+        <div className="wrapper__title title">
+          <div className="title__left">
+            <h3 className="title__main"><FormattedMessage id="HELLO_NAME" values={{ name: 'Trần Việt Hòa' }} /></h3>
+            <p className="title__small"><FormattedMessage id="INPUT_HOTEL_TEXT_DES" /></p>
           </div>
-          <div className="box">
-            <label className="box__title">
+          <div className="title__right">
+          </div>
+        </div>
+        <Form>
+          <div className="box detail">
+            <h3 className="detail__title">
               <FormattedMessage id="INPUT_HOTEL_INFO" />
-            </label>
-            <FormattedMessage id="INPUT_HOTEL_NAME" />
+            </h3>
+            <div className="detail__hint"><FormattedMessage id="INPUT_HOTEL_NAME" /></div>
             <div className="row">
               <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_VIETNAMESE" />}>
@@ -52,18 +61,17 @@ class HotelDetail extends React.Component {
               <div className="col-6">
                 <FormItem
                   label={<FormattedMessage id="INPUT_ENGLISH" />}
-                  help={<FormattedMessage id="INPUT_ENGLISH_GUILD" />}>
-                  {getFieldDecorator('nameEn')(<Input />)}
+                  help={<small className="detail__hint"><FormattedMessage id="INPUT_ENGLISH_GUILD" /></small>}>
+                  {getFieldDecorator('nameEnglish')(<Input />)}
                 </FormItem>
               </div>
             </div>
             <div className="row">
               <div className="col-6">
-                <FormItem
-                  label={<FormattedMessage id="INPUT_HOTEL_TYPE" />}
-                  help={<FormattedMessage id="INPUT_LOCATION" />}>
+                <FormItem label={<FormattedMessage id="INPUT_HOTEL_TYPE" />}>
                   {getFieldDecorator('hotelType')(<Select></Select>)}
                 </FormItem>
+                <p className="detail__hint"><FormattedMessage id="INPUT_LOCATION" /></p>
                 <FormItem label={<FormattedMessage id="INPUT_COUNTRY" />}>
                   {getFieldDecorator('countryId')(<Select></Select>)}
                 </FormItem>
@@ -93,11 +101,10 @@ class HotelDetail extends React.Component {
                 </FormItem>
               </div>
             </div>
-          </div>
-          <div className="box">
-            <label className="box__title">
+            <Divider />
+            <h3 className="detail__title">
               <FormattedMessage id="INPUT_CONTACT_INFO" />
-            </label>
+            </h3>
             <div className="row">
               <div className="col-6">
                 <FormItem label={<FormattedMessage id="CONTACT_NAME" />}>
@@ -111,16 +118,14 @@ class HotelDetail extends React.Component {
                 </FormItem>
               </div>
             </div>
-          </div>
-          <div>
-          </div>
-          <div>
-            <Button>
-              <FormattedMessage id="SAVE_AND_NEXT" />
-            </Button>
+            <div>
+              <Button type="primary" onClick={this.onSave}>
+                <FormattedMessage id="SAVE_AND_NEXT" />
+              </Button>
+            </div>
           </div>
         </Form>
-      </div >)
+      </React.Fragment >)
   }
 }
 

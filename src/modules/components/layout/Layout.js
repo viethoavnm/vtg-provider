@@ -1,11 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Header from 'components/Header';
+import Sider from 'components/Sider';
 import Footer from 'components/Footer';
+import { connect } from 'react-redux';
 import { startSession } from 'utils/auth';
 import { LOGOUT_KEY, LOGIN_KEY } from 'consts';
 import { requestLogout, verifyLogin } from 'reduxModule/common';
-import './Layout.less';
 
 class AppLayout extends React.PureComponent {
   onLogging = (e) => {
@@ -25,7 +24,7 @@ class AppLayout extends React.PureComponent {
   componentDidMount() {
     if (this.props.loggedIn) {
       startSession();
-    } 
+    }
     window.addEventListener('storage', this.onLogging, false);
   }
 
@@ -36,8 +35,14 @@ class AppLayout extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        <Header />
-        {this.props.children}
+        <div className="wrapper">
+          <div className="wrapper__sider">
+            <Sider />
+          </div>
+          <div className="wrapper__content">
+            {this.props.children}
+          </div>
+        </div>
         <Footer />
       </React.Fragment>)
   }

@@ -10,7 +10,7 @@ export default connect((state) => ({ loggedIn: state.common.loggedIn }))(
         {...rest}
         render={props => (loggedIn
           ? (<Layout><Component {...props} /></Layout>)
-          : (<Redirect to={{ pathname: "/notAuthorized", state: { from: props.location } }} />)
+          : (<Redirect to={{ pathname: "/login", state: { from: props.location } }} />)
         )}
       />
     );

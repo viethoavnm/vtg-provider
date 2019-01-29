@@ -17,34 +17,19 @@
   }
 }
 
-.box {
-  padding-top: 36px;
-  margin-top: 16px;
-  position: relative;
-  &__title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 16px;
-    font-weight: bold;
-    border-bottom: 2px solid #666;
-  }
-}
-
 .mini-map {
-  border: 1px solid #ccc;
-  background: #ddd;
-  box-shadow: 2px 4px 8px rgba(192, 192, 192, .35);
+  border: 1px solid darken(#fff, 15%);
+  box-shadow: 2px 4px 6px rgba(192, 192, 192, .05);
   width: 100%;
   height: 100%;
 }
 
-.detail {
+.hpreview {
   margin-top: 48px;
   >* {
     margin-bottom: 16px;
   }
-  .box {
+  .hotel__box {
     background: #fff;
     border-radius: 4px;
   }
@@ -260,5 +245,34 @@
         color: rgba(0, 0, 0, 0.45);
       }
     }
+  }
+}
+
+.detail {
+  padding-bottom: 50px !important;
+  margin-bottom: 25px;
+  &__title {
+    font-weight: 18px;
+    padding: 16px 0 8px 0;
+    color: @textGray2;
+    font-weight: bold;
+  }
+  &__hint {
+    color: @textGray3;
+  }
+  .ant-form-item-label label {
+    color: @textGray3;
+    font-weight: bold;
+  }
+  .ant-input,
+  .ant-select-selection {
+    background-color: #f0f0f0 !important;
+    border: none !important;
+    font-family: Roboto, sans-serif;
+    border-radius: 4px;
+    color: #a0a0a0;
+  }
+  .ant-select-selection {
+    max-width: 300px;
   }
 }

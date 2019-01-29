@@ -101,5 +101,12 @@
   "HOTEL_AMENITIES": "Tiện nghi, dịch vụ khách sạn",
   "USER_INFO": "Thông tin người dùng",
   "SETTING": "Cài đặt",
-  "SIGN_OUT": "Đăng xuất"
+  "SIGN_OUT": "Đăng xuất",
+  "HOTE_MANAGEMENT": "Quản lý chỗ nghỉ",
+  "HOTE_MANAGEMENT_DES": "Quản lý các thông tin về chỗ nghỉ của bạn",
+  "FIN_MANAGEMENT": "Quản lý tài chính",
+  "ORDER_MANAGEMENT": "Quản lý đơn hàng",
+  "ROOM_AND_PRICE_MANAGEMENT": "Quản lý phòng và giá phòng",
+  "ADS_MANAGEMENT": "Quản lý quảng cáo",
+  "CUSTOMER_TAKE_CARE": "Chăm sóc khách hàng"
 }
