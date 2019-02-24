@@ -7,12 +7,16 @@ import Axios from 'axios';
 import jsCookie from 'js-cookie';
 import { BASE_URL, TOKEN_KEY } from 'consts';
 
+function getToken() {
+  return jsCookie.get(TOKEN_KEY) ? ("Bearer " + jsCookie.get(TOKEN_KEY)) : undefined;
+}
+
 const services = Axios.create({
   baseURL: BASE_URL,
   withCredentials: false,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': jsCookie.get(TOKEN_KEY) ? ("Bearer " + jsCookie.get(TOKEN_KEY)) : undefined
+    'Authorization': getToken()
   }
 })
 addInterceptors(services)

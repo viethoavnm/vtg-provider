@@ -108,5 +108,16 @@
   "ORDER_MANAGEMENT": "Quản lý đơn hàng",
   "ROOM_AND_PRICE_MANAGEMENT": "Quản lý phòng và giá phòng",
   "ADS_MANAGEMENT": "Quản lý quảng cáo",
-  "CUSTOMER_TAKE_CARE": "Chăm sóc khách hàng"
+  "CUSTOMER_TAKE_CARE": "Chăm sóc khách hàng",
+  "HOTEL": "Khách sạn",
+  "HOMESTAY": "Homestay",
+  "MOTEL": "Nhà nghỉ",
+  "RESORT": "Khu nghỉ dưỡng",
+  "APARTMENT": "Căn hộ",
+  "YACHT": "Yacht",
+  "VILLA": "Biệt thự",
+  "CREATE_SUCCESS": "Tạo thành công!",
+  "UPDATE_SUCCESS": "Cập nhật thành công!",
+  "UPDATE_HOTEL_INFO": "Cập nhật thông tin khách sạn",
+  "UPDATE_HOTEL_DES": "Thay đổi các thông tin về chỗ nghỉ của bạn"
 }

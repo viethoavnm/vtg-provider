@@ -24,37 +24,44 @@
   height: 100%;
 }
 
-.hpreview {
-  margin-top: 48px;
-  >* {
-    margin-bottom: 16px;
-  }
-  .hotel__box {
-    background: #fff;
-    border-radius: 4px;
-  }
-  .title {
-    display: inline-block;
-    font-size: 1.5em;
-    margin: 16px 0 8px 0;
-    color: rgba(0, 0, 0, 0.65);
-    font-weight: 700;
-    .ant-rate {
-      display: inline-flex;
-      align-items: center;
-      font-size: 0.7em;
-      background: rgba(255, 255, 0, 0.15);
-      border-radius: 4px;
-      padding: 0 4px;
-      .ant-rate-star {
-        margin-right: 2px;
-        padding-bottom: 2px;
+.preview {
+  &__header {
+    .title {
+      &__address {
+        padding: 8px 0;
+        color: @textGray2;
+      }
+      &__name {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 18px;
+        overflow: hidden;
+        color: @textGray3;
+        .ant-rate {
+          display: inline-flex;
+          align-items: center;
+          font-size: 0.7em;
+          background: rgba(255, 255, 0, 0.15);
+          border-radius: 4px;
+          padding: 0 4px;
+          .ant-rate-star {
+            margin-right: 2px;
+            padding-bottom: 2px;
+          }
+        }
       }
     }
   }
-  .label {
-    color: rgba(0, 0, 0, 0.85);
-    font-size: 1.15em;
+  &__action {
+    padding: 8px 0;
+    .selection {
+      min-width: 200px;
+      margin-left: 8px;
+    }
+    >* {
+      margin-right: 16px;
+    }
   }
   .preview {
     .sliderA {
@@ -268,11 +275,7 @@
   .ant-select-selection {
     background-color: #f0f0f0 !important;
     border: none !important;
-    font-family: Roboto, sans-serif;
     border-radius: 4px;
     color: #a0a0a0;
-  }
-  .ant-select-selection {
-    max-width: 300px;
   }
 }

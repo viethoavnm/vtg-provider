@@ -1,8 +1,8 @@
 import React from 'react';
 import api from 'utils/api';
-import { FormattedMessage } from 'intl';
 import { withRouter } from 'react-router-dom';
-import { Form, Input, Select, Button, Divider } from 'antd';
+import injectIntl, { FormattedMessage } from 'intl';
+import { Form, Input, Select, Button, Divider, message } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -14,27 +14,60 @@ const prefixSelector =
   </Select>)
 
 class HotelDetail extends React.Component {
+  state = { countries: [], cities: [] }
+
   fetch = () => {
     api.getHotelDetail(this.props.match.params.id)
       .then((data) => {
-        this.props.form.setFieldsValue(data);
+        this.data = data;
+        this.props.form.setFieldsValue({
+          name: data.name,
+          nameEnglish: data.nameEnglish,
+          provinceId: data.provinceId,
+          address: data.address,
+          hotelType: data.hotelType,
+          street: data.street
+        });
       })
       .catch()
   }
 
   onSave = () => {
-    const id = this.props.match.params.id || 1;
-    this.props.history.push(`/preview/${id}`)
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        if (!this.props.match.params.id) {
+          api.createHotel(values)
+            .then(({ id }) => {
+              message.success(this.props.t("CREATE_SUCCESS"));
+              this.props.history.push(`/preview/${id}`);
+            })
+        } else {
+          api.updateHotel({ id: this.data.id, ...values })
+            .then(({ id }) => {
+              message.success(this.props.t("UPDATE_SUCCESS"));
+              this.props.history.push(`/preview/${id}`);
+            })
+        }
+      }
+    });
   }
 
   componentDidMount() {
+    api.getCountries()
+      .then(({ content }) => {
+        this.setState({ countries: content })
+      });
+    api.getProvincesBrief()
+      .then((data) => {
+        this.setState({ cities: data })
+      })
     if (!!this.props.match.params.id) {
       this.fetch();
     }
   }
 
   render() {
-    const addMode = !this.props.match.params.id;
+    const { countries, cities } = this.state;
     const { getFieldDecorator } = this.props.form;
     return (
       <React.Fragment>
@@ -69,14 +102,29 @@ class HotelDetail extends React.Component {
             <div className="row">
               <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_HOTEL_TYPE" />}>
-                  {getFieldDecorator('hotelType')(<Select></Select>)}
+                  {getFieldDecorator('hotelType')(
+                    <Select>
+                      <Select.Option key="HOTEL"><FormattedMessage id="HOTEL" /></Select.Option>
+                      <Select.Option key="HOMESTAY"><FormattedMessage id="HOMESTAY" /></Select.Option>
+                      <Select.Option key="MOTEL"><FormattedMessage id="MOTEL" /></Select.Option>
+                      <Select.Option key="RESORT"><FormattedMessage id="RESORT" /></Select.Option>
+                      <Select.Option key="APARTMENT"><FormattedMessage id="APARTMENT" /></Select.Option>
+                      <Select.Option key="YACHT"><FormattedMessage id="YACHT" /></Select.Option>
+                      <Select.Option key="VILLA"><FormattedMessage id="VILLA" /></Select.Option>
+                    </Select>)}
                 </FormItem>
                 <p className="detail__hint"><FormattedMessage id="INPUT_LOCATION" /></p>
                 <FormItem label={<FormattedMessage id="INPUT_COUNTRY" />}>
-                  {getFieldDecorator('countryId')(<Select></Select>)}
+                  {getFieldDecorator('countryId')(
+                    <Select>
+                      {countries.map(({ id, name }) => (<Select.Option key={id}>{name}</Select.Option>))}
+                    </Select>)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="INPUT_CITY" />}>
-                  {getFieldDecorator('provinceId')(<Select></Select>)}
+                  {getFieldDecorator('provinceId')(
+                    <Select>
+                      {cities.map(({ id, name }) => (<Select.Option key={id}>{name}</Select.Option>))}
+                    </Select>)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="INPUT_AREA_CODE" />}>
                   {getFieldDecorator('geoCode')(<Input />)}
@@ -89,7 +137,7 @@ class HotelDetail extends React.Component {
             <div className="row">
               <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_DISTRIC" />}>
-                  {getFieldDecorator('distric')(<Input />)}
+                  {getFieldDecorator('district')(<Input />)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="INPUT_HOME_NO" />}>
                   {getFieldDecorator('address')(<Input.TextArea />)}
@@ -130,4 +178,4 @@ class HotelDetail extends React.Component {
 }
 
 const FormWrapper = Form.create()(HotelDetail);
-export default withRouter(FormWrapper);
+export default withRouter(injectIntl(FormWrapper));

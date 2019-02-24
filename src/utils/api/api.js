@@ -5,12 +5,23 @@ const api = (axios) => ({
       .then(({ value }) => (value ? value : "{}"));
   },
   getMyHotel: (params) => {
-    return axios.get('api/hotel/get-all', { params });
+    return axios.get('api/hotel/get-list-by-provider', { params });
   },
-  getHotelDetail: (id)=>{
+  getHotelDetail: (id) => {
     return axios.get(`api/hotel/get-by-id/${id}`);
+  },
+  getCountries: () => {
+    return axios.get('api/country/get-all');
+  },
+  getProvincesBrief: (params) => {
+    return axios.get('api/province/get-all-brf', { params });
+  },
+  createHotel: (data) => {
+    return axios.post('api/hotel/', data);
+  },
+  updateHotel: (data) => {
+    return axios.put('api/hotel/', data);
   }
 })
-
 
 export default api;

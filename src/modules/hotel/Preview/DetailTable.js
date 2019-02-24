@@ -28,6 +28,7 @@ export default class DetailTable extends React.PureComponent {
   }
 }
 const dummy = {
+  id: 1,
   title: 'Phòng lớn loại sang',
   thumnail: '',
   square: 25,
