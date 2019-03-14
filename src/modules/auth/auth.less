@@ -1,6 +1,6 @@
 .auth-nest {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: center;
   min-height: 100vh;
 }
@@ -8,7 +8,26 @@
 .auth {
   width: 360px;
   margin-right: 64px;
-  
+
+  &--left {
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      img {
+        max-width: 150px;
+      }
+    }
+
+    h4 {
+      font-size: 20px;
+      line-height: 2em;
+      font-weight: bold;
+      color: white;
+    }
+  }
+
   .ant-form {
     background: #FFFFFF;
     padding: 45px;
@@ -107,4 +126,8 @@
   &--gp {
     background-color: #ea4335;
   }
+}
+
+.gradient {
+  background: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 }

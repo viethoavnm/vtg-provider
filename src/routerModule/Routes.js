@@ -14,12 +14,12 @@ export default withRouter(class Routes extends React.PureComponent {
     <Switch>
       <Route exact path="/login" component={Modules.Login} />
       <Route exact path="/register" component={Modules.Register} />
-      <Redirect exact from="/" to="/hotels" />
-      <PrivateRoute path="/hotels" exact component={Modules.HotelManagement} />
-      <PrivateRoute path="/hotel" exact component={Modules.HotelDetail} />
-      <PrivateRoute path="/hotel/:id" exact component={Modules.HotelDetail} />
-      <PrivateRoute path="/room/:id" exact component={Modules.RoomManagement} />
-      <PrivateRoute path="/preview/:id" exact component={Modules.HotelPreview} />
+      {/* <Redirect exact from="/" to="/hotels" /> */}
+      {/* <PrivateRoute path="/hotels" exact component={Modules.HotelManagement} /> */}
+      {/* <PrivateRoute path="/hotel" exact component={Modules.HotelDetail} /> */}
+      {/* <PrivateRoute path="/hotel/:id" exact component={Modules.HotelDetail} /> */}
+      {/* <PrivateRoute path="/room/:id" exact component={Modules.RoomManagement} /> */}
+      {/* <PrivateRoute path="/preview/:id" exact component={Modules.HotelPreview} /> */}
       <Route exact path="/notAuthorized" component={Modules.NotAuthorized} />
       <Route component={Modules.NotFound} />
     </Switch>)
