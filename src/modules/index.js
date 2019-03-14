@@ -36,3 +36,8 @@ export const HotelPreview = loadable({
   loader: () => import('./hotel/HotelPreview'),
   loading: Loading
 })
+
+export const RoomManagement = loadable({
+  loader: () => import('./room/RoomManagement'),
+  loading: Loading
+})

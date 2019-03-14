@@ -2,7 +2,7 @@
   "name": "spetrip-provider",
   "author": "viethoavnm",
   "version": "1.0.0",
-  "proxy": "https://spetrip.com/vtgdev/",
+  "proxy": "https://spetrip.com/vtg/",
   "private": true,
   "dependencies": {
     "antd": "^3.12.1",

@@ -8,11 +8,11 @@ export default class Sider extends React.Component {
       <div className="sider">
         <div className="menu-header">
           <div className="menu-header__logo">
-            <img src="/images/logo.png" alt="logo" />
+            <img src="./images/logo.png" alt="logo" />
           </div>
           <div className="menu-header__avatar avatar">
             <div className="avatar__box">
-              <img src="/images/avatar.png" alt="logo" />
+              <img src="./images/avatar.png" alt="logo" />
             </div>
             <div className="avatar__name">Trần Việt Hòa</div>
             <p className="avatar__title">Khách hàng</p>

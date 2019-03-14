@@ -18,6 +18,7 @@ export default withRouter(class Routes extends React.PureComponent {
       <PrivateRoute path="/hotels" exact component={Modules.HotelManagement} />
       <PrivateRoute path="/hotel" exact component={Modules.HotelDetail} />
       <PrivateRoute path="/hotel/:id" exact component={Modules.HotelDetail} />
+      <PrivateRoute path="/room/:id" exact component={Modules.RoomManagement} />
       <PrivateRoute path="/preview/:id" exact component={Modules.HotelPreview} />
       <Route exact path="/notAuthorized" component={Modules.NotAuthorized} />
       <Route component={Modules.NotFound} />
