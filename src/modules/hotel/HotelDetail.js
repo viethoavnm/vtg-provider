@@ -2,10 +2,11 @@ import React from 'react';
 import api from 'utils/api';
 import { withRouter } from 'react-router-dom';
 import injectIntl, { FormattedMessage } from 'intl';
-import { Form, Input, Select, Button, Divider, message } from 'antd';
+import { Form, Input, Select, Button, Divider, Steps, message } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
+const Step = Steps.Step;
 
 const prefixSelector =
   (<Select style={{ width: 70 }}>
@@ -79,8 +80,8 @@ class HotelDetail extends React.Component {
           <div className="title__right">
           </div>
         </div>
-        <Form>
-          <div className="box detail">
+        <Form layout="horizontal">
+          <div className="detail">
             <h3 className="detail__title">
               <FormattedMessage id="INPUT_HOTEL_INFO" />
             </h3>

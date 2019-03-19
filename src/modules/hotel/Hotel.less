@@ -5,12 +5,14 @@
     align-items: center;
     justify-content: space-between;
   }
+
   &__left,
   &__right {
     flex-shrink: 0;
     flex-grow: 0;
     max-width: 50%;
   }
+
   &__title {
     font-weight: bold;
     color: #666;
@@ -31,6 +33,7 @@
         padding: 8px 0;
         color: @textGray2;
       }
+
       &__name {
         display: flex;
         align-items: center;
@@ -38,6 +41,7 @@
         font-size: 18px;
         overflow: hidden;
         color: @textGray3;
+
         .ant-rate {
           display: inline-flex;
           align-items: center;
@@ -45,6 +49,7 @@
           background: rgba(255, 255, 0, 0.15);
           border-radius: 4px;
           padding: 0 4px;
+
           .ant-rate-star {
             margin-right: 2px;
             padding-bottom: 2px;
@@ -53,48 +58,59 @@
       }
     }
   }
+
   &__action {
     padding: 8px 0;
+
     .selection {
       min-width: 200px;
       margin-left: 8px;
     }
+
     >* {
       margin-right: 16px;
     }
   }
+
   .preview {
     .sliderA {
       height: 350px;
+
       img {
         object-fit: cover;
         width: 100%;
         height: 100%;
       }
     }
+
     .sliderB {
       height: 150px;
       margin-top: 8px;
+
       .slick-slide>div {
         margin-right: 8px;
       }
+
       img {
         object-fit: cover;
         height: 100%;
       }
     }
   }
+
   .hotel-amenities {
     .amenity-list {
       display: flex;
       padding: 8px 0;
       margin-top: 8px;
+
       .amenity-item {
         flex: 1 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         .u-icon {
           font-size: 2em;
           color: rgba(0, 0, 0, 0.45)
@@ -102,44 +118,55 @@
       }
     }
   }
+
   .date-time {
     display: flex;
+
     .group {
       margin-right: 16px;
+
       .g-label {
         margin-bottom: 4px;
       }
     }
   }
+
   .table-wrapper {
     .t-head {
       padding: 16px 4px;
       background: #fff;
       border-bottom: 1px solid #ccc;
       margin-bottom: 16px;
+
       .rm-pd {
         padding: 0 4px;
       }
     }
+
     .room-item {
       border-radius: 4px;
       height: 180px;
       margin-bottom: 16px;
       border: 1px solid rgba(192, 192, 192, .35);
+
       .room-type {
         padding: 8px;
         padding-left: 16px;
+
         .anticon {
           margin-right: 4px;
         }
+
         >* {
           margin-bottom: 4px;
         }
+
         .type {
           font-size: 1.25em;
           font-weight: 700;
         }
       }
+
       .room-policy {
         ul {
           padding: 0 18px;
@@ -148,6 +175,7 @@
           font-style: italic;
         }
       }
+
       .price,
       .human-num,
       .room-amount {
@@ -155,6 +183,7 @@
         display: flex;
         flex-direction: column;
       }
+
       .room-amount {
         .r-dropdown {
           width: 80px;
@@ -165,11 +194,13 @@
           align-items: center;
         }
       }
+
       .price {
         padding-right: 16px;
         align-items: flex-end;
         justify-content: center;
         position: relative;
+
         .sale-off {
           position: absolute;
           top: 16px;
@@ -181,23 +212,28 @@
           border-radius: 4px;
           background: rgba(255, 255, 0, .25);
         }
+
         .price-per-night {
           font-weight: normal;
           color: #1890ff;
         }
+
         .strike {
           font-weight: normal;
           text-decoration: line-through;
         }
+
         .last-price {
           color: red;
           font-weight: 700;
           font-size: 1.5em;
         }
       }
+
       .thumbnail {
         width: 100%;
         height: 100%;
+
         img {
           width: 100%;
           height: 100%;
@@ -206,20 +242,24 @@
         }
       }
     }
+
     .payment {
       margin-left: 8px;
       min-height: 180px;
       display: flex;
       flex-direction: column;
       padding: 16px;
+
       .selected {
         font-size: 1.5em;
       }
+
       >* {
         margin-bottom: 8px;
       }
     }
   }
+
   .hotel-policy,
   .about-hotel {
     .box {
@@ -228,6 +268,7 @@
       padding: 16px;
       line-height: 1.75;
       font-weight: normal;
+
       ul {
         padding: 0;
         padding-left: 16px;
@@ -235,18 +276,22 @@
       }
     }
   }
+
   .user-rating {
     .comment {
       display: flex;
+
       &__score {
         font-size: 1.5em;
         font-weight: bold;
         margin-right: 16px;
       }
+
       &__name {
         font-weight: bold;
         margin-right: 16px;
       }
+
       &__date {
         font-weight: bold;
         color: rgba(0, 0, 0, 0.45);
@@ -258,24 +303,26 @@
 .detail {
   padding-bottom: 50px !important;
   margin-bottom: 25px;
+
   &__title {
     font-weight: 18px;
     padding: 16px 0 8px 0;
     color: @textGray2;
     font-weight: bold;
   }
+
   &__hint {
     color: @textGray3;
   }
+
   .ant-form-item-label label {
     color: @textGray3;
-    font-weight: bold;
   }
+
   .ant-input,
   .ant-select-selection {
-    background-color: #f0f0f0 !important;
-    border: none !important;
-    border-radius: 4px;
-    color: #a0a0a0;
+    border-color: #ebedf2;
+    color: #575962;
+    border-radius: 2px;
   }
 }
