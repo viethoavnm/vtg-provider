@@ -2,11 +2,10 @@ import React from 'react';
 import * as api from 'utils/api';
 import { withRouter } from 'react-router-dom';
 import injectIntl, { FormattedMessage } from 'intl';
-import { Form, Input, Select, Button, Divider, Steps, message } from 'antd';
+import { Form, Input, Select, Button, Divider, message } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
-const Step = Steps.Step;
 
 const prefixSelector =
   (<Select style={{ width: 70 }}>
