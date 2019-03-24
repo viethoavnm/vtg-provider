@@ -2,7 +2,7 @@
  * Common reducer 
  *  - Switch locale
  */
-import api from 'utils/api';
+import * as api from 'utils/api';
 import jsCookie from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import create from 'utils/createReducer';
@@ -71,7 +71,7 @@ export function requestLogin(token) {
       payload: user
     })
     startSession();
-    redirectToAttemptedUrl();
+    setTimeout(redirectToAttemptedUrl, 0);
   }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import api from 'utils/api';
+import * as api from 'utils/api';
 import { withRouter } from 'react-router-dom';
 import injectIntl, { FormattedMessage } from 'intl';
 import { Form, Input, Select, Button, Divider, Steps, message } from 'antd';

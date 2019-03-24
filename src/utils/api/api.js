@@ -1,27 +1,57 @@
-const api = (axios) => ({
-  /**API : COMMON */
-  getSetting: (name) => {
-    return axios.get(`api/setting/get-by-name`, { params: { name } })
-      .then(({ value }) => (value ? value : "{}"));
-  },
-  getMyHotel: (params) => {
-    return axios.get('api/hotel/get-list-by-provider', { params });
-  },
-  getHotelDetail: (id) => {
-    return axios.get(`api/hotel/get-by-id/${id}`);
-  },
-  getCountries: () => {
-    return axios.get('api/country/get-all');
-  },
-  getProvincesBrief: (params) => {
-    return axios.get('api/province/get-all-brf', { params });
-  },
-  createHotel: (data) => {
-    return axios.post('api/hotel/', data);
-  },
-  updateHotel: (data) => {
-    return axios.put('api/hotel/', data);
+/**
+ * Genarate common requestor
+ * Author: viethoavnm
+ */
+import Axios from 'axios';
+import jsCookie from 'js-cookie';
+import { BASE_URL, TOKEN_KEY } from 'consts';
+
+function getToken() {
+  return jsCookie.get(TOKEN_KEY) ? ("Bearer " + jsCookie.get(TOKEN_KEY)) : undefined;
+}
+
+const services = Axios.create({
+  baseURL: BASE_URL,
+  withCredentials: false,
+  headers: {
+    'Content-Type': 'application/json'
   }
 })
+addInterceptors(services)
 
-export default api;
+/**
+ * Genarate interceptors for axios instantce
+ */
+function addInterceptors(instance) {
+  instance.interceptors.request.use(
+    config => {
+      const token = getToken();
+      if (token) {
+        config.headers.Authorization = token;
+      }
+      return config;
+    },
+    error => Promise.reject(error)
+  );
+
+  instance.interceptors.response.use(function (response) {
+    try {
+      if (response.config.noAuth) {
+        return response.data
+      }
+      if (response.data.value) {
+        return response.data.value
+      }
+      return Promise.reject()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  }, function (error) {
+    return Promise.reject(error)
+  })
+}
+
+/**
+ * 
+ */
+export default services;

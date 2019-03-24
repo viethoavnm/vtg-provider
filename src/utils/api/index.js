@@ -1,48 +1,30 @@
-/**
- * Genarate common requestor
- * Author: viethoavnm
- */
-import api from './api';
-import Axios from 'axios';
-import jsCookie from 'js-cookie';
-import { BASE_URL, TOKEN_KEY } from 'consts';
+import axios from './api'
 
-function getToken() {
-  return jsCookie.get(TOKEN_KEY) ? ("Bearer " + jsCookie.get(TOKEN_KEY)) : undefined;
+export const getSetting = (name) => {
+  return axios.get(`api/setting/get-by-name`, { params: { name } })
+    .then(({ value }) => (value ? value : "{}"));
 }
 
-const services = Axios.create({
-  baseURL: BASE_URL,
-  withCredentials: false,
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': getToken()
-  }
-})
-addInterceptors(services)
-
-/**
- * Genarate interceptors for axios instantce
- */
-function addInterceptors(instance) {
-  return instance.interceptors.response.use(function (response) {
-    try {
-      if (response.config.noAuth) {
-        return response.data
-      }
-      if (response.data.value) {
-        return response.data.value
-      }
-      return Promise.reject()
-    } catch (error) {
-      return Promise.reject(error)
-    }
-  }, function (error) {
-    return Promise.reject(error)
-  })
+export const getMyHotel = (params) => {
+  return axios.get('api/hotel/get-list-by-provider', { params });
 }
 
-/**
- * 
- */
-export default api(services)
+export const getHotelDetail = (id) => {
+  return axios.get(`api/hotel/get-by-id/${id}`);
+}
+
+export const getCountries = () => {
+  return axios.get('api/country/get-all');
+}
+
+export const getProvincesBrief = (params) => {
+  return axios.get('api/province/get-all-brf', { params });
+}
+
+export const createHotel = (data) => {
+  return axios.post('api/hotel/', data);
+}
+
+export const updateHotel = (data) => {
+  return axios.put('api/hotel/', data);
+}
