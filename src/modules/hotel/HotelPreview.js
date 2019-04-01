@@ -3,13 +3,13 @@ import * as api from 'utils/api';
 import Basic from './Preview/HotelBasic';
 import About from './Preview/AboutHotel';
 import Policy from './Preview/HotelPolicy';
+import RoomTable from './Preview/RoomTable';
 import Preview from './Preview/ImagePreview';
 import Services from './Preview/HotelServices';
 import Amenities from './Preview/HotelAmenities';
-import { Icon, Rate, Button, Select, Tooltip, Divider } from 'antd';
-import { withRouter } from 'react-router-dom';
+import { Button, Divider } from 'antd';
 import { FormattedMessage } from 'intl';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 export default withRouter(class HotelPreview extends React.Component {
   state = { hotel: {} };
@@ -52,6 +52,9 @@ export default withRouter(class HotelPreview extends React.Component {
           </div>
           <div className="box">
             <Amenities />
+          </div>
+          <div className="box">
+            <RoomTable />
           </div>
           <div className="box">
             <Services />
