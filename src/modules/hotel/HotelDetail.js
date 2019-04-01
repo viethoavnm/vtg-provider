@@ -2,16 +2,9 @@ import React from 'react';
 import * as api from 'utils/api';
 import { withRouter } from 'react-router-dom';
 import injectIntl, { FormattedMessage } from 'intl';
-import { Form, Input, Select, Button, Divider, message } from 'antd';
+import { Form, Input, Select, Button, message } from 'antd';
 
 const FormItem = Form.Item;
-const Option = Select.Option;
-
-const prefixSelector =
-  (<Select style={{ width: 70 }}>
-    <Option value="86">+86</Option>
-    <Option value="87">+87</Option>
-  </Select>)
 
 class HotelDetail extends React.Component {
   state = { countries: [], cities: [] }
@@ -80,27 +73,21 @@ class HotelDetail extends React.Component {
           </div>
         </div>
         <Form layout="horizontal">
-          <div className="detail">
-            <h3 className="detail__title">
-              <FormattedMessage id="INPUT_HOTEL_INFO" />
-            </h3>
-            <div className="detail__hint"><FormattedMessage id="INPUT_HOTEL_NAME" /></div>
-            <div className="row">
-              <div className="col-6">
+          <div className="row detail">
+            <div className="col-6">
+              <div className="box">
+                <h3 className="detail__title">
+                  <FormattedMessage id="INPUT_HOTEL_INFO" />
+                </h3>
+                <div className="detail__hint"><FormattedMessage id="INPUT_HOTEL_NAME" /></div>
                 <FormItem label={<FormattedMessage id="INPUT_VIETNAMESE" />}>
                   {getFieldDecorator('name')(<Input />)}
                 </FormItem>
-              </div>
-              <div className="col-6">
                 <FormItem
                   label={<FormattedMessage id="INPUT_ENGLISH" />}
                   help={<small className="detail__hint"><FormattedMessage id="INPUT_ENGLISH_GUILD" /></small>}>
                   {getFieldDecorator('nameEnglish')(<Input />)}
                 </FormItem>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_HOTEL_TYPE" />}>
                   {getFieldDecorator('hotelType')(
                     <Select>
@@ -129,47 +116,37 @@ class HotelDetail extends React.Component {
                 <FormItem label={<FormattedMessage id="INPUT_AREA_CODE" />}>
                   {getFieldDecorator('geoCode')(<Input />)}
                 </FormItem>
-              </div>
-              <div className="col-6">
-                <div className="mini-map" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_DISTRIC" />}>
                   {getFieldDecorator('district')(<Input />)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="INPUT_HOME_NO" />}>
                   {getFieldDecorator('address')(<Input.TextArea />)}
                 </FormItem>
-              </div>
-              <div className="col-6">
                 <FormItem label={<FormattedMessage id="INPUT_STREET" />}>
                   {getFieldDecorator('street')(<Input.TextArea />)}
                 </FormItem>
               </div>
             </div>
-            <Divider />
-            <h3 className="detail__title">
-              <FormattedMessage id="INPUT_CONTACT_INFO" />
-            </h3>
-            <div className="row">
-              <div className="col-6">
+            <div className="col-6">
+              <div className="box">
+                <h3 className="detail__title">
+                  <FormattedMessage id="INPUT_CONTACT_INFO" />
+                </h3>
                 <FormItem label={<FormattedMessage id="CONTACT_NAME" />}>
-                  <Input />
+                  {getFieldDecorator('contactName')(<Input />)}
                 </FormItem>
                 <FormItem label={<FormattedMessage id="PHONE" />}>
-                  <Input addonBefore={prefixSelector} />
-                </FormItem>
-                <FormItem label={<FormattedMessage id="EMAIL" />}>
                   <Input />
                 </FormItem>
+                <FormItem label={<FormattedMessage id="EMAIL" />}>
+                  {getFieldDecorator('email')(<Input />)}
+                </FormItem>
+                <div>
+                  <Button type="primary" onClick={this.onSave}>
+                    <FormattedMessage id="SAVE_AND_NEXT" />
+                  </Button>
+                </div>
               </div>
-            </div>
-            <div>
-              <Button type="primary" onClick={this.onSave}>
-                <FormattedMessage id="SAVE_AND_NEXT" />
-              </Button>
             </div>
           </div>
         </Form>
