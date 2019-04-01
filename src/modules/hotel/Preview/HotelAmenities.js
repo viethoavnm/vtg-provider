@@ -4,12 +4,16 @@ import { FormattedMessage } from 'react-intl';
 
 const HotelAmenities = () => (
   <div className="hotel-amenities">
-    <span className="btn btn--circle">
-      <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
-        <Icon type="form" />
-      </Tooltip>
-    </span>
-    <FormattedMessage id="TOP_AMENITIES" />
+    <div className="toolbar">
+      <span className="btn btn--circle">
+        <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
+          <Icon type="form" />
+        </Tooltip>
+      </span>
+      <span className="toolbar__head">
+        <FormattedMessage id="TOP_AMENITIES" />
+      </span>
+    </div>
     <div className="row no-gutters">
       <div className="col-6 amenity-list">
         <div className="amenity-item">

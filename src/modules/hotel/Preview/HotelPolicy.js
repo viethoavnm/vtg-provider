@@ -1,25 +1,21 @@
 import React from 'react';
+import { Tooltip, Input, Icon } from 'antd';
 import { FormattedMessage } from 'react-intl';
 
 const HotelPolicy = () => (
-  <div className="hotel-policy">
-    <div className="row">
-      <div className="col-12 label">
-        <FormattedMessage id="HOTEL_POLICY" />
-      </div>
+  <React.Fragment>
+    <div className="toolbar">
+      <span className="btn btn--circle">
+        <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
+          <Icon type="form" />
+        </Tooltip>
+      </span>
+      <span className="toolbar__head">
+        Chính sách "khách sạn"
+    </span>
     </div>
-    <div className="row">
-      <div className="col-12">
-        <div className="box">
-          <ul>
-            <li>Nhận phòng lúc 14h</li>
-            <li>Trả phòng lúc 12h</li>
-            <li>Không được nuôi mèo</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+    <Input.TextArea readOnly value="Chưa có thông tin" rows={3} />
+  </React.Fragment>
 )
 
 export default HotelPolicy;

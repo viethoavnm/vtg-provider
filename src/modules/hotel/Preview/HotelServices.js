@@ -1,13 +1,18 @@
 import React from 'react';
-import { Icon } from 'antd';
+import { Icon, Tooltip } from 'antd';
 import { FormattedMessage } from 'react-intl';
 
 const HotelServices = () => (
   <div className="hotel-amenities">
-    <div className="row">
-      <div className="col-12 label">
+    <div className="toolbar">
+      <span className="btn btn--circle">
+        <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
+          <Icon type="form" />
+        </Tooltip>
+      </span>
+      <span className="toolbar__head">
         <FormattedMessage id="HOTEL_AMENITIES" />
-      </div>
+      </span>
     </div>
     <div className="row no-gutters">
       <div className="col-6 amenity-list">

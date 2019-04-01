@@ -28,11 +28,14 @@ class Preview extends React.PureComponent {
     const { sliderA, sliderB } = this.state;
     return (
       <div className="slick-wrapper">
-        <div>
+        <div className="toolbar">
           <span className="btn btn--circle">
             <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
               <Icon type="form" />
             </Tooltip>
+          </span>
+          <span className="toolbar__head">
+            Chỉnh sửa thư viện ảnh
           </span>
         </div>
         <Slider
