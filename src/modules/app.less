@@ -1,3 +1,23 @@
 @import './components/Style/style.less';
 @import './error-page/ErrorPage.less';
 @import './hotel/Hotel.less';
+
+
+.btn {
+  cursor: pointer;
+  transition: all ease-in-out .35s;
+
+  &--circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    border-radius: 50%;
+
+    &:hover {
+      background: gainsboro;
+    }
+  }
+}

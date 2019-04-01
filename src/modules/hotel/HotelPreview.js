@@ -1,16 +1,14 @@
 import React from 'react';
 import * as api from 'utils/api';
 import About from './Preview/AboutHotel';
-import Table from './Preview/DetailTable';
-import Rating from './Preview/UserRating';
 import Policy from './Preview/HotelPolicy';
-import Similar from './Preview/SimilarHotel';
 import Preview from './Preview/ImagePreview';
 import Services from './Preview/HotelServices';
 import Amenities from './Preview/HotelAmenities';
-import { Icon, Rate, Button, Select } from 'antd';
+import { Icon, Rate, Button, Select, Tooltip, Divider } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'intl';
+import { Link } from 'react-router-dom';
 
 export default withRouter(class HotelPreview extends React.Component {
   state = { hotel: {} };
@@ -43,30 +41,42 @@ export default withRouter(class HotelPreview extends React.Component {
             </Button>
           </div>
         </div>
-        <div className="preview box">
+        <div className="box">
+          <Link to={`/hotel/${this.props.match.params.id}`} className="btn btn--circle btn--float">
+            <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
+              <Icon type="form" />
+            </Tooltip>
+          </Link>
           <div className="preview__header title">
-            <div className="title__name">{hotel.name}<Rate value={5} disabled /></div>
+            <div className="title__name">{hotel.name}
+              <Rate value={5} disabled />
+            </div>
             <div className="title__address"><Icon type="environment" style={{ marginRight: 6 }} />{hotel.address}</div>
           </div>
           <div className="preview__action">
-            <Button>
-              <FormattedMessage id="UPDATE_INFO" />
-            </Button>
-            <span>
-              <FormattedMessage id="SELECT_HOTEL_STAR" />
-              <Select className="selection">
-
-              </Select>
-            </span>
+            <FormattedMessage id="SELECT_HOTEL_STAR" />
+            <Select defaultValue="0">
+              <Select.Option value="0"><Rate value={0} disabled /></Select.Option>
+              <Select.Option value="1"><Rate value={1} disabled /></Select.Option>
+              <Select.Option value="2"><Rate value={2} disabled /></Select.Option>
+              <Select.Option value="3"><Rate value={3} disabled /></Select.Option>
+              <Select.Option value="4"><Rate value={4} disabled /></Select.Option>
+              <Select.Option value="5"><Rate value={5} disabled /></Select.Option>
+            </Select>
           </div>
-          <Preview thumbs={[]} />
+        </div>
+        <div className="preview">
+
+          <Divider />
+          <Preview thumbs={[null, null, null, null]} />
+          <Divider />
           <Amenities />
-          <Table data={[]} />
+          <Divider />
           <Services />
+          <Divider />
           <About />
+          <Divider />
           <Policy />
-          <Rating />
-          <Similar />
         </div>
       </React.Fragment>)
   }

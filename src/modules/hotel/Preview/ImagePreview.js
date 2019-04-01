@@ -1,5 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
+import { Tooltip, Icon } from 'antd';
+import { FormattedMessage } from 'intl';
 import { RESOURCES_PATH } from 'consts';
 
 class Preview extends React.PureComponent {
@@ -24,39 +26,36 @@ class Preview extends React.PureComponent {
 
   render() {
     const { sliderA, sliderB } = this.state;
-    return (<div className="preview">
-      <div className="row no-gutters">
-        <div className="col-7 slick-wrapper inline sliderA">
-          <Slider
-            {...settingsA}
-            asNavFor={sliderB}
-            ref={e => (this.sliderA = e)}>
-            {this.props.thumbs.map((item, index) =>
-              (<img src={RESOURCES_PATH + item} key={index.toString()} alt="img" />))}
-          </Slider>
+    return (
+      <div className="slick-wrapper">
+        <div>
+          <span className="btn btn--circle">
+            <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
+              <Icon type="form" />
+            </Tooltip>
+          </span>
         </div>
-        <div className="col-5">
-          {/* <Maps location={{ lat: 0, lng: 0 }} /> */}
-        </div>
+        <Slider
+          {...settingsA}
+          asNavFor={sliderB}
+          ref={e => (this.sliderA = e)}>
+          {this.props.thumbs.map((item, index) =>
+            (item ? <img src={RESOURCES_PATH + item} key={index.toString()} alt="img" /> : <span key={index.toString()} className="img-no-src">1920x1080</span>))}
+        </Slider>
+        <Slider
+          {...settingsB}
+          asNavFor={sliderA}
+          ref={e => (this.sliderB = e)}>
+          {this.props.thumbs.map((item, index) =>
+            (item ? <img src={RESOURCES_PATH + item} key={index.toString()} alt="img" /> : <span key={index.toString()} className="img-no-src">1920x1080</span>))}
+        </Slider>
       </div>
-      <div className="row">
-        <div className="col-12 slick-wrapper inline sliderB">
-          <Slider
-            {...settingsB}
-            asNavFor={sliderA}
-            ref={e => (this.sliderB = e)}>
-            {this.props.thumbs.map((item, index) =>
-              (<img src={RESOURCES_PATH + item} key={index.toString()} alt="img" />))}
-          </Slider>
-        </div>
-      </div>
-    </div>
     );
   }
 }
 
 Preview.defaultProps = {
-  thumbs: []
+  thumbs: [null, null, null, null]
 }
 
 export default Preview;
