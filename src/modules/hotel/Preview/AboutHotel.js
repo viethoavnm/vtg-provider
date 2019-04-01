@@ -27,7 +27,11 @@ class AboutHotel extends React.Component {
             Giới thiệu "khách sạn"
         </span>
         </div>
-        <Input.TextArea readOnly value="Hãy mô tả ngắn gọn chỗ nghỉ của bạn" rows={3} />
+        <Input.TextArea
+          rows={3}
+          readOnly
+          value={value}
+          placeholder="Hãy mô tả ngắn gọn chỗ nghỉ của bạn" />
         <Modal
           visible={modal}
           loading={loading}

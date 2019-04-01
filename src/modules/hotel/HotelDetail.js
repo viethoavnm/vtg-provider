@@ -1,5 +1,6 @@
 import React from 'react';
 import * as api from 'utils/api';
+import Map from 'components/Location';
 import { withRouter } from 'react-router-dom';
 import injectIntl, { FormattedMessage } from 'intl';
 import { Form, Input, Select, Button, message } from 'antd';
@@ -128,6 +129,12 @@ class HotelDetail extends React.Component {
               </div>
             </div>
             <div className="col-6">
+              <div className="box">
+                <h3 className="detail__title">
+                  <span>Bản đồ khách sạn</span>
+                </h3>
+                <Map />
+              </div>
               <div className="box">
                 <h3 className="detail__title">
                   <FormattedMessage id="INPUT_CONTACT_INFO" />

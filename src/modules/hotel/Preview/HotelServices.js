@@ -1,13 +1,13 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Icon, Tooltip, Modal, Spin } from 'antd';
+import { Icon, Tooltip, Modal } from 'antd';
 
 class HotelServices extends React.Component {
 
   onUpdateServices = () => {
-    Modal.info({
-      title: 'API đang được cập nhật.',
-      content: <Spin tip="Cập nhật..." />
+    Modal.warning({
+      title: 'Chú ý',
+      content: 'Danh sách dịch vụ và tiện ích khách sạn đang trống! Hãy liên hệ QTV để được hỗ trợ.'
     })
   }
 

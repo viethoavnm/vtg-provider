@@ -24,12 +24,12 @@ const HotelBasic = ({ hotel }) => (
     <div className="preview__action">
       <FormattedMessage id="SELECT_HOTEL_STAR" />
       <Select defaultValue="0" size="small">
-        <Select.Option value="0"><Rate value={0} disabled /></Select.Option>
-        <Select.Option value="1"><Rate value={1} disabled /></Select.Option>
-        <Select.Option value="2"><Rate value={2} disabled /></Select.Option>
-        <Select.Option value="3"><Rate value={3} disabled /></Select.Option>
-        <Select.Option value="4"><Rate value={4} disabled /></Select.Option>
-        <Select.Option value="5"><Rate value={5} disabled /></Select.Option>
+        <Select.Option value="0">Chưa đánh giá</Select.Option>
+        <Select.Option value="1">Khách sạn 1 sao</Select.Option>
+        <Select.Option value="2">Khách sạn 2 sao</Select.Option>
+        <Select.Option value="3">Khách sạn 3 sao</Select.Option>
+        <Select.Option value="4">Khách sạn 4 sao</Select.Option>
+        <Select.Option value="5">Khách sạn 5 sao</Select.Option>
       </Select>
     </div>
   </React.Fragment>
