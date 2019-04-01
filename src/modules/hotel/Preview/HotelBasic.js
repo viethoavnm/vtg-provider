@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Tooltip, Icon, Select, Rate } from 'antd';
 
 const HotelBasic = ({ hotel }) => (
   <React.Fragment>
     <div className="toolbar">
-      <span className="btn btn--circle">
+      <Link to={`/hotel/${hotel.id}`} className="btn btn--circle">
         <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
           <Icon type="form" />
         </Tooltip>
-      </span>
+      </Link>
       <span className="toolbar__head">
         Chỉnh sửa thông tin cơ bản
     </span>
@@ -22,7 +23,7 @@ const HotelBasic = ({ hotel }) => (
     </div>
     <div className="preview__action">
       <FormattedMessage id="SELECT_HOTEL_STAR" />
-      <Select defaultValue="0">
+      <Select defaultValue="0" size="small">
         <Select.Option value="0"><Rate value={0} disabled /></Select.Option>
         <Select.Option value="1"><Rate value={1} disabled /></Select.Option>
         <Select.Option value="2"><Rate value={2} disabled /></Select.Option>

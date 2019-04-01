@@ -7,7 +7,7 @@ import RoomTable from './Preview/RoomTable';
 import Preview from './Preview/ImagePreview';
 import Services from './Preview/HotelServices';
 import Amenities from './Preview/HotelAmenities';
-import { Button, Divider } from 'antd';
+import { Button, Divider, Modal } from 'antd';
 import { FormattedMessage } from 'intl';
 import { withRouter } from 'react-router-dom';
 
@@ -28,6 +28,16 @@ export default withRouter(class HotelPreview extends React.Component {
     }
   }
 
+  onDeleteConfirm = () => {
+    Modal.confirm({
+      title: 'Xóa khách sạn',
+      content: 'Bạn chắc chắn muốn xóa khách sạn này chứ ?',
+      onOk: () => {
+        
+      }
+    })
+  }
+
   render() {
     const { hotel } = this.state;
     return (
@@ -38,7 +48,7 @@ export default withRouter(class HotelPreview extends React.Component {
             <p className="title__small"><FormattedMessage id="UPDATE_HOTEL_DES" /></p>
           </div>
           <div className="title__right">
-            <Button type="danger">
+            <Button type="danger" onClick={this.onDeleteConfirm}>
               <FormattedMessage id="DELETE_HOTEL" />
             </Button>
           </div>
@@ -48,22 +58,22 @@ export default withRouter(class HotelPreview extends React.Component {
             <Basic hotel={hotel} />
           </div>
           <div className="box">
-            <Preview thumbs={[null, null, null, null]} />
+            <Preview hotel={hotel} />
           </div>
           <div className="box">
-            <Amenities />
+            <Amenities hotel={hotel} />
           </div>
           <div className="box">
-            <RoomTable />
+            <RoomTable hotel={hotel} />
           </div>
           <div className="box">
-            <Services />
+            <Services hotel={hotel} />
           </div>
           <div className="box">
-            <About />
+            <About hotel={hotel} />
           </div>
           <div className="box">
-            <Policy />
+            <Policy hotel={hotel} />
           </div>
           <Divider />
         </div>

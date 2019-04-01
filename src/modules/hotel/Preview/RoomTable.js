@@ -1,16 +1,20 @@
 import React from 'react';
-import { Icon, Tooltip, Empty } from 'antd';
 import { FormattedMessage } from 'react-intl';
+import { Icon, Tooltip, Empty, Modal, Spin } from 'antd';
 
 export default class DetailTable extends React.PureComponent {
-  onBooking = () => {
-    window.location = "#/payment"
+  onUpdateRoom = () => {
+    Modal.info({
+      title: 'API đang được cập nhật.',
+      content: <Spin tip="Cập nhật..." />
+    })
   }
+
   render() {
     return (
       <div className="table-wrapper">
         <div className="toolbar">
-          <span className="btn btn--circle">
+          <span className="btn btn--circle" onClick={this.onUpdateRoom}>
             <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
               <Icon type="form" />
             </Tooltip>
