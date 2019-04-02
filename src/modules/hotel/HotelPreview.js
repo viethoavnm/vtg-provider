@@ -33,8 +33,27 @@ export default withRouter(class HotelPreview extends React.Component {
       title: 'Xóa khách sạn',
       content: 'Bạn chắc chắn muốn xóa khách sạn này chứ ?',
       onOk: () => {
-        
+
       }
+    })
+  }
+
+  onBack = () => {
+    Modal.confirm({
+      title: 'Chú ý',
+      content: 'Bạn chưa cập nhật một số thông tin, việc này sẽ ảnh hưởng tới việc đặt phòng của khách hàng! Vui lòng cập nhật các thông tin này.',
+      okText: 'Cập nhật',
+      cancelText: 'Để sau',
+      onCancel: () => {
+        this.props.history.push(`/hotel/${this.props.match.params.id}`);
+      }
+    })
+  }
+
+  onSubmit = () => {
+    Modal.error({
+      title: 'Lỗi',
+      content: 'Đã có lỗi xảy ra! Vui lòng thử lại.'
     })
   }
 
@@ -76,6 +95,13 @@ export default withRouter(class HotelPreview extends React.Component {
             <Policy hotel={hotel} />
           </div>
           <Divider />
+          <div className="btn-act">
+            <Button
+              type="default"
+              onClick={this.onBack}
+              style={{ marginRight: 8 }}>Quay lại</Button>
+            <Button type="primary" onClick={this.onSubmit}>Gửi</Button>
+          </div>
         </div>
       </React.Fragment>)
   }

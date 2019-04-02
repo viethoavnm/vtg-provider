@@ -6,7 +6,6 @@
 }
 
 .menu-header {
-  padding: 16px;
   &__logo {
     display: flex;
     align-items: center;
@@ -14,12 +13,13 @@
     height: 96px;
     overflow: hidden;
     text-align: center;
-    transform: scale(1.4);
+
     span {
       font-size: 24px;
       font-weight: bold;
       color: cornflowerblue;
     }
+
     img {
       max-height: 100%;
       width: auto;
@@ -29,12 +29,14 @@
 
 .menu-content {
   border-right: none !important;
+
   .ant-menu-item-active,
   .ant-menu-item-selected {
     background: transparent !important;
     border-color: @accent  !important;
     color: @accent  !important;
   }
+
   .ant-menu-item {
     height: auto !important;
     padding: 8px 24px !important;
@@ -49,14 +51,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 25px 0;
+
   &__box {
     height: 110px;
     overflow: hidden;
+
     img {
       max-height: 100%;
       width: auto;
     }
   }
+
   &__name {
     font-weight: bold;
     font-size: 16px;
@@ -64,6 +69,7 @@
     margin-top: 8px;
     margin-bottom: 4px;
   }
+
   &__title {
     font-weight: bold;
     color: @textGray3;

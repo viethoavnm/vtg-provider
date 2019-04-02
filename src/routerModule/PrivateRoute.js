@@ -5,6 +5,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 export default connect((state) => ({ loggedIn: state.common.loggedIn }))(
   function PrivateRoute({ component: Component, loggedIn, ...rest }) {
+    window.scrollTo(0, 0);
     return (
       <Route
         {...rest}

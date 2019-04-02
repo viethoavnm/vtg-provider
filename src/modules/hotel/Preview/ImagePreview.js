@@ -1,19 +1,19 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Tooltip, Icon, Empty, Button, Modal } from 'antd';
 import { FormattedMessage } from 'intl';
 import { RESOURCES_PATH } from 'consts';
+import UploadMedia from '../UploadMedia/UploadMedia'
+import { Tooltip, Icon, Empty, Button, Modal } from 'antd';
 
 class Preview extends React.PureComponent {
   state = {
     sliderA: null,
-    sliderB: null
+    sliderB: null,
+    modal: false
   }
 
-  onUploadGallery = () => {
-    Modal.info({
-      title: 'Tính năng đang cập nhật'
-    })
+  onToggle = () => {
+    this.setState({ modal: !this.state.modal })
   }
 
   componentDidMount() {
@@ -24,13 +24,13 @@ class Preview extends React.PureComponent {
   }
 
   render() {
-    const { sliderA, sliderB } = this.state;
-    const isEmty = !this.props.hotel.contentName;
-    const thumbs = this.props.hotel.contentName;
+    const { sliderA, sliderB, modal } = this.state;
+    const thumbs = this.props.hotel.contentNames ? this.props.hotel.contentNames.filter((item) => (item)) : [];
+    const isEmty = !thumbs.length;
     return (
       <div className="slick-wrapper">
         <div className="toolbar">
-          <span className="btn btn--circle" onClick={this.onUploadGallery}>
+          <span className="btn btn--circle" onClick={this.onToggle}>
             <Tooltip title={<FormattedMessage id="UPDATE_INFO" />}>
               <Icon type="form" />
             </Tooltip>
@@ -52,7 +52,7 @@ class Preview extends React.PureComponent {
                 </span>
               }
             >
-              <Button type="primary" onClick={this.onUploadGallery}>Tải lên ngay</Button>
+              <Button type="primary" onClick={this.onToggle}>Tải lên ngay</Button>
             </Empty>,
           </React.Fragment>
           :
@@ -73,6 +73,13 @@ class Preview extends React.PureComponent {
             </Slider>
           </React.Fragment>
         }
+        <Modal
+          width={800}
+          visible={modal}
+          title="Chỉnh sửa thư viện ảnh"
+          onCancel={this.onToggle}>
+          <UploadMedia />
+        </Modal>
       </div>
     );
   }
